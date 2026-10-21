@@ -1,0 +1,6 @@
+{
+  "name": "TiketGO",
+  "description": "Agregator tiket multi-penyedia (pesawat, kereta, bus, hotel, bioskop) dengan wireframe UI statis dan visualisasi algoritma sorting dan searching untuk UTS Struktur Data.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

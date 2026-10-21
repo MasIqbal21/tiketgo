@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TiketGO — Agregator Tiket & Visualisasi Algoritma</title>
+  <meta name="description" content="Agregator tiket multi-penyedia (pesawat, kereta, bus, hotel, bioskop) dengan wireframe UI statis dan visualisasi algoritma sorting dan searching untuk UTS Struktur Data." />
+  <meta property="og:title" content="TiketGO — Agregator Tiket & Visualisasi Algoritma" />
+  <meta property="og:description" content="Agregator tiket multi-penyedia (pesawat, kereta, bus, hotel, bioskop) dengan wireframe UI statis dan visualisasi algoritma sorting dan searching untuk UTS Struktur Data." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Lapisan Overlay Gelap Transparan di Atas Background Gambar -->
+  <div class="tgo-bg-overlay"></div>
+
+  <!-- ========================================================
+       1. NAVBAR TIPIS
+       ======================================================== -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="#" class="brand-link" aria-label="TiketGO Beranda">
+        <span class="brand-logo">TG</span>
+        <span class="brand-name">TiketGO</span>
+      </a>
+      <span class="nav-badge">UTS Struktur Data · PTI Smt 3</span>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================
+         2. HERO SECTION
+         ======================================================== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <!-- Elemen Dekoratif SVG Samar -->
+      <svg class="hero-decorations" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+        <circle cx="180" cy="60" r="140" fill="none" stroke="#818cf8" stroke-width="1.2" opacity="0.4" />
+        <circle cx="180" cy="60" r="220" fill="none" stroke="#818cf8" stroke-width="0.8" opacity="0.25" />
+        <path d="M-50,220 C300,120 600,280 1000,140 C1250,50 1400,160 1500,200" fill="none" stroke="#a78bfa" stroke-width="1.5" opacity="0.35" />
+        <circle cx="1250" cy="180" r="160" fill="none" stroke="#c084fc" stroke-width="1.2" opacity="0.3" />
+        <circle cx="1250" cy="180" r="260" fill="none" stroke="#c084fc" stroke-width="0.8" opacity="0.15" />
+      </svg>
+
+      <div class="hero-content">
+        <span class="hero-pill-badge">Prototipe Agregator Multi-Penyedia</span>
+        <h1 id="hero-title" class="hero-title">Satu Platform untuk Semua Tiket Perjalanan Anda</h1>
+        <p class="hero-subtitle">
+          Bandingkan harga tiket pesawat, kereta api, bus antar kota, reservasi hotel, hingga tiket bioskop dari berbagai penyedia resmi dalam satu sistem antarmuka terintegrasi.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         3. KARTU PENCARIAN MELAYANG
+         ======================================================== -->
+    <section class="floating-search-wrapper" aria-label="Pencarian Tiket">
+      <div class="floating-search-card">
+        <!-- Baris Tab Kategori (Semua, Pesawat, Kereta, Bus, Hotel, Bioskop) -->
+        <div class="category-tabs" role="tablist" aria-label="Kategori Tiket">
+          <button type="button" class="category-tab active" role="tab" aria-selected="true" data-category="semua">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="7" height="7" x="3" y="3" rx="1.5" />
+              <rect width="7" height="7" x="14" y="3" rx="1.5" />
+              <rect width="7" height="7" x="14" y="14" rx="1.5" />
+              <rect width="7" height="7" x="3" y="14" rx="1.5" />
+            </svg>
+            <span>Semua</span>
+          </button>
+
+          <button type="button" class="category-tab" role="tab" aria-selected="false" data-category="pesawat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/>
+            </svg>
+            <span>Pesawat</span>
+          </button>
+          
+          <button type="button" class="category-tab" role="tab" aria-selected="false" data-category="kereta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="16" height="16" x="4" y="3" rx="2"/>
+              <path d="M4 11h16"/><path d="M12 3v8"/><path d="m8 19-2 3"/><path d="m18 22-2-3"/><circle cx="8" cy="15" r="1"/><circle cx="16" cy="15" r="1"/>
+            </svg>
+            <span>Kereta</span>
+          </button>
+          
+          <button type="button" class="category-tab" role="tab" aria-selected="false" data-category="bus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 6v6"/><path d="M15 6v6"/><path d="M2 12h19.6"/><path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/>
+            </svg>
+            <span>Bus</span>
+          </button>
+          
+          <button type="button" class="category-tab" role="tab" aria-selected="false" data-category="hotel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 18h12"/><path d="M6 14h12"/><path d="M6 10h12"/><path d="M6 6h12"/><path d="M10 22v-4h4v4"/><rect width="16" height="20" x="4" y="2" rx="2"/>
+            </svg>
+            <span>Hotel</span>
+          </button>
+          
+          <button type="button" class="category-tab" role="tab" aria-selected="false" data-category="bioskop">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="15" x="2" y="3" rx="2"/><polyline points="2 7 6 7 6 3"/><polyline points="10 3 10 7 14 7 14 3"/><polyline points="18 3 18 7 22 7"/><polygon points="10 11 15 13.5 10 16 10 11"/><path d="m4 21 2-3"/><path d="m20 21-2-3"/><path d="M9 21h6"/>
+            </svg>
+            <span>Bioskop</span>
+          </button>
+        </div>
+
+        <!-- Input Pencarian + Tombol Cari -->
+        <form class="search-form" id="search-form" action="#" method="GET">
+          <div class="search-input-box">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="search-input" 
+              class="search-input" 
+              placeholder="Cari maskapai, kota tujuan, rute, atau penyedia..." 
+              autocomplete="off"
+              aria-autocomplete="list"
+              aria-controls="search-suggestions"
+            >
+            <!-- Dropdown Saran Autocomplete -->
+            <div id="search-suggestions" class="search-suggestions" style="display: none;" role="listbox"></div>
+          </div>
+          <button type="submit" class="btn-search">
+            <span>Cari</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         4. KONTEN UTAMA — GRID 2 KOLOM (11fr / 9fr)
+         ======================================================== -->
+    <div class="main-layout">
+      <div class="content-grid" id="main-content-grid">
+        
+        <!-- KOLOM KIRI: DAFTAR TIKET -->
+        <section class="tickets-section" aria-labelledby="section-category-title">
+          <div class="section-header">
+            <div class="section-title-wrap">
+              <h2 id="section-category-title" class="section-title">Semua Tiket & Penawaran</h2>
+              <span id="tickets-count" class="section-counter">Menampilkan 30 hasil</span>
+            </div>
+
+            <!-- Kontrol Aksi: Tombol Tampilkan Visualisasi + Dropdown Urutkan -->
+            <div class="section-header-actions">
+              <button 
+                type="button" 
+                id="btn-show-visualizer" 
+                class="btn-show-visualizer" 
+                style="display: none;" 
+                title="Tampilkan Panel Visualisasi Algoritma"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <span>Tampilkan Visualisasi</span>
+              </button>
+
+              <div class="sort-control">
+                <select id="sort-select" class="sort-select" aria-label="Urutkan Hasil">
+                  <option value="rekomendasi">Urutkan: Rekomendasi</option>
+                  <option value="harga-asc">Termurah (Harga Terendah)</option>
+                  <option value="harga-desc">Termahal (Harga Tertinggi)</option>
+                  <option value="rating-desc">Rating Tertinggi</option>
+                  <option value="alfabet-asc">Alfabet: A ke Z (Nama / Rute)</option>
+                  <option value="alfabet-desc">Alfabet: Z ke A (Nama / Rute)</option>
+                </select>
+                <svg class="sort-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Container Kartu Tiket Vertikal (Di-render Dinamis oleh JS) -->
+          <div id="tickets-container" class="ticket-list" aria-live="polite">
+            <!-- Isi dimuat melalui js/app.js -->
+          </div>
+        </section>
+
+        <!-- KOLOM KANAN: VISUALISASI ALGORITMA (PANEL BERTAB) -->
+        <aside class="algo-aside" id="algo-aside" aria-label="Visualisasi Algoritma Struktur Data">
+          <div class="algo-card">
+            
+            <!-- Baris Top: Tab Sorting & Searching + Tombol Sembunyikan -->
+            <div class="algo-top-bar">
+              <div class="algo-tabs" role="tablist" aria-label="Pilih Mode Algoritma">
+                <button 
+                  type="button" 
+                  id="tab-algo-sorting" 
+                  class="algo-tab active" 
+                  role="tab" 
+                  aria-selected="true" 
+                  aria-controls="panel-algo-sorting"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m3 16 4 4 4-4"/><path d="M7 20V4"/><path d="m21 8-4-4-4 4"/><path d="M17 4v16"/>
+                  </svg>
+                  <span>Sorting</span>
+                </button>
+                
+                <button 
+                  type="button" 
+                  id="tab-algo-searching" 
+                  class="algo-tab" 
+                  role="tab" 
+                  aria-selected="false" 
+                  aria-controls="panel-algo-searching"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                  </svg>
+                  <span>Searching</span>
+                </button>
+              </div>
+
+              <!-- Tombol Sembunyikan Panel -->
+              <button 
+                type="button" 
+                id="btn-hide-visualizer" 
+                class="btn-hide-visualizer" 
+                title="Sembunyikan Panel Visualisasi"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                  <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+                <span>Sembunyikan</span>
+              </button>
+            </div>
+
+            <!-- ================= PANEL 1: SORTING ================= -->
+            <div 
+              id="panel-algo-sorting" 
+              class="algo-panel active" 
+              role="tabpanel" 
+              aria-labelledby="tab-algo-sorting"
+            >
+              <div class="algo-meta-header">
+                <div class="algo-select-group">
+                  <label for="select-algo-sorting" class="algo-select-label">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    Pilih Algoritma:
+                  </label>
+                  <select id="select-algo-sorting" class="algo-select" aria-label="Pilih Algoritma Sorting">
+                    <option value="bubble" selected>Bubble Sort</option>
+                    <option value="exchange">Exchange Sort</option>
+                    <option value="selection">Selection Sort</option>
+                    <option value="insertion">Insertion Sort</option>
+                    <option value="shell">Shell Sort</option>
+                    <option value="quick">Quick Sort</option>
+                  </select>
+                </div>
+                <span class="algo-complexity" id="complexity-sorting">O(n²) · In-Place</span>
+              </div>
+
+              <p class="algo-desc" id="desc-sorting">
+                Membandingkan pasangan elemen bertetangga dan menukarnya jika urutannya salah, mengapungkan nilai ekstrem ke ujung secara bertahap.
+              </p>
+
+              <!-- Kotak Visualisasi Grafik Batang Animasi -->
+              <div class="algo-chart-card">
+                <div class="chart-header">
+                  <div class="chart-title-wrap">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="18" y1="20" x2="18" y2="10"></line>
+                      <line x1="12" y1="20" x2="12" y2="4"></line>
+                      <line x1="6" y1="20" x2="6" y2="14"></line>
+                    </svg>
+                    <span>Visualisasi Nilai Elemen (Grafik Batang)</span>
+                  </div>
+                  <div class="chart-header-actions">
+                    <div class="speed-control-group" aria-label="Kecepatan Animasi">
+                      <button type="button" class="btn-speed" data-speed="0.5" title="Kecepatan Lambat (0.5x)">0.5x</button>
+                      <button type="button" class="btn-speed active" data-speed="1" title="Kecepatan Normal (1x)">1x</button>
+                      <button type="button" class="btn-speed" data-speed="2" title="Kecepatan Cepat (2x)">2x</button>
+                      <button type="button" class="btn-speed" data-speed="4" title="Kecepatan Sangat Cepat (4x)">4x</button>
+                      <button type="button" class="btn-speed" data-speed="50" title="Kecepatan Super Cepat (50x)">50x</button>
+                      <button type="button" class="btn-speed" data-speed="100" title="Kecepatan Instan (100x)">100x</button>
+                    </div>
+                    <span class="chart-status-badge" id="chart-status-sorting">Siaga</span>
+                  </div>
+                </div>
+                <div class="chart-bars-container" id="chart-bars-sorting" aria-label="Grafik Batang Animasi Sorting"></div>
+                <div class="chart-legend">
+                  <span class="legend-item"><span class="legend-color legend-default"></span> Normal</span>
+                  <span class="legend-item"><span class="legend-color legend-compare"></span> Bandingkan</span>
+                  <span class="legend-item"><span class="legend-color legend-swap"></span> Tukar / Geser</span>
+                  <span class="legend-item"><span class="legend-color legend-sorted"></span> Terurut</span>
+                </div>
+              </div>
+
+              <!-- Console Log Box Monospace -->
+              <div class="console-box" id="console-sorting" aria-label="Console Log Operasi Sorting">
+                <div class="log-line log-system">[SYSTEM] Siaga: Menunggu aksi pengurutan pada kategori Tiket Pesawat...</div>
+                <div class="log-line log-system">[SYSTEM] Pilih algoritma &amp; opsi "Urutkan" untuk memulai simulasi.</div>
+              </div>
+
+              <!-- Cuplikan Kode C Referensi -->
+              <div class="code-container">
+                <div class="code-header" id="code-header-sorting">
+                  <span id="code-filename-sorting">bubble_sort.c</span>
+                  <span>Bahasa C (WASM Target)</span>
+                </div>
+                <div class="code-box" id="code-box-sorting">
+<pre><code id="code-snippet-sorting"><span class="c-type">void</span> <span class="c-fn">bubble_sort_tickets</span>(<span class="c-type">Ticket</span> arr[], <span class="c-type">int</span> n) {
+    <span class="c-kw">for</span> (<span class="c-type">int</span> i = <span class="c-op">0</span>; i &lt; n - <span class="c-op">1</span>; i++) {
+        <span class="c-type">bool</span> swapped = <span class="c-op">false</span>;
+        <span class="c-kw">for</span> (<span class="c-type">int</span> j = <span class="c-op">0</span>; j &lt; n - i - <span class="c-op">1</span>; j++) {
+            <span class="c-comment">// Perbandingan nilai elemen tiket</span>
+            <span class="c-kw">if</span> (arr[j].price &gt; arr[j + <span class="c-op">1</span>].price) {
+                <span class="c-type">Ticket</span> temp = arr[j];
+                arr[j] = arr[j + <span class="c-op">1</span>];
+                arr[j + <span class="c-op">1</span>] = temp;
+                swapped = <span class="c-op">true</span>;
+            }
+        }
+        <span class="c-kw">if</span> (!swapped) <span class="c-kw">break</span>; <span class="c-comment">// Optimasi early exit</span>
+    }
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <!-- ================= PANEL 2: SEARCHING ================= -->
+            <div 
+              id="panel-algo-searching" 
+              class="algo-panel" 
+              role="tabpanel" 
+              aria-labelledby="tab-algo-searching"
+            >
+              <div class="algo-meta-header">
+                <div class="algo-select-group">
+                  <label for="select-algo-searching" class="algo-select-label">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    Pilih Metode:
+                  </label>
+                  <select id="select-algo-searching" class="algo-select" aria-label="Pilih Metode Searching">
+                    <option value="linear" selected>Linear Search</option>
+                    <option value="binary">Binary Search</option>
+                  </select>
+                </div>
+                <span class="algo-complexity" id="complexity-searching">O(n) · Sequential</span>
+              </div>
+
+              <p class="algo-desc" id="desc-searching">
+                Memeriksa setiap elemen data secara berurutan satu per satu dari indeks awal hingga akhir sampai kata kunci ditemukan.
+              </p>
+
+              <!-- Kotak Visualisasi Grafik Batang Animasi -->
+              <div class="algo-chart-card" id="chart-visual-searching">
+                <div class="chart-header">
+                  <div class="chart-title-wrap">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>Visualisasi Penelusuran Elemen (Grafik Batang)</span>
+                  </div>
+                  <div class="chart-header-actions">
+                    <div class="speed-control-group" aria-label="Kecepatan Animasi">
+                      <button type="button" class="btn-speed" data-speed="0.5" title="Kecepatan Lambat (0.5x)">0.5x</button>
+                      <button type="button" class="btn-speed active" data-speed="1" title="Kecepatan Normal (1x)">1x</button>
+                      <button type="button" class="btn-speed" data-speed="2" title="Kecepatan Cepat (2x)">2x</button>
+                      <button type="button" class="btn-speed" data-speed="4" title="Kecepatan Sangat Cepat (4x)">4x</button>
+                      <button type="button" class="btn-speed" data-speed="50" title="Kecepatan Super Cepat (50x)">50x</button>
+                      <button type="button" class="btn-speed" data-speed="100" title="Kecepatan Instan (100x)">100x</button>
+                    </div>
+                    <span class="chart-status-badge" id="chart-status-searching">Siaga</span>
+                  </div>
+                </div>
+                <div class="chart-bars-container" id="chart-bars-searching" aria-label="Grafik Batang Animasi Searching"></div>
+                <div class="chart-legend" id="legend-searching">
+                  <span class="legend-item"><span class="legend-color legend-default"></span> Normal</span>
+                  <span class="legend-item"><span class="legend-color legend-checking"></span> Diperiksa</span>
+                  <span class="legend-item"><span class="legend-color legend-found"></span> Cocok / Ditemukan</span>
+                </div>
+              </div>
+
+              <!-- Console Log Box Monospace -->
+              <div class="console-box" id="console-searching" aria-label="Console Log Operasi Searching">
+                <div class="log-line log-system">[SYSTEM] Siaga: Menunggu kata kunci pencarian...</div>
+                <div class="log-line log-system">[SYSTEM] Masukkan kata kunci lalu klik 'Cari' untuk memulai simulasi.</div>
+              </div>
+
+              <!-- Cuplikan Kode C Referensi -->
+              <div class="code-container">
+                <div class="code-header" id="code-header-searching">
+                  <span id="code-filename-searching">linear_search.c</span>
+                  <span>Bahasa C (WASM Target)</span>
+                </div>
+                <div class="code-box" id="code-box-searching">
+<pre><code id="code-snippet-searching"><span class="c-type">int</span> <span class="c-fn">linear_search_ticket</span>(<span class="c-type">Ticket</span> arr[], <span class="c-type">int</span> n, <span class="c-kw">const</span> <span class="c-type">char</span> *query) {
+    <span class="c-kw">for</span> (<span class="c-type">int</span> i = <span class="c-op">0</span>; i &lt; n; i++) {
+        <span class="c-comment">// Pencarian substring pada judul dan provider</span>
+        <span class="c-kw">if</span> (<span class="c-fn">strstr</span>(arr[i].title, query) != <span class="c-kw">NULL</span> ||
+            <span class="c-fn">strstr</span>(arr[i].provider, query) != <span class="c-kw">NULL</span>) {
+            <span class="c-kw">return</span> i; <span class="c-comment">// Indeks elemen ditemukan</span>
+        }
+    }
+    <span class="c-kw">return</span> -<span class="c-op">1</span>; <span class="c-comment">// Tidak ditemukan</span>
+}</code></pre>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================================
+       FOOTER
+       ======================================================== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>&copy; 2026 TiketGO — Wireframe Prototipe Agregator Tiket</span>
+      <span>Tugas UTS Mata Kuliah Struktur Data · Program Studi Pendidikan Teknologi Informasi Smt 3</span>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIKA UTAMA (VANILLA JS + WASM) -->
+  <script src="js/tiketgo_wasm.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
