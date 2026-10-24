@@ -119,6 +119,70 @@ main {
   color: #0f172a;
 }
 
+.navbar-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #f1f5f9;
+  padding: 3px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+}
+
+.nav-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-family: inherit;
+  line-height: 1;
+}
+
+.nav-tab svg {
+  width: 15px;
+  height: 15px;
+}
+
+.nav-tab:hover {
+  color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.nav-tab.active {
+  background-color: #ffffff;
+  color: var(--primary-color);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.nav-tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9999px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
 .nav-badge {
   font-size: 12px;
   font-weight: 500;
@@ -266,9 +330,143 @@ main {
 /* Search Bar Input */
 .search-form {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 12px;
   margin-top: 16px;
+}
+
+/* Route Search Fields (Dua Dropdown Bersebelahan: Dari & Ke) */
+.route-search-fields {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.route-field-group {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+}
+
+.route-field-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-left: 2px;
+  user-select: none;
+}
+
+.route-field-label svg {
+  width: 14px;
+  height: 14px;
+  color: var(--primary-color);
+}
+
+.route-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.route-input {
+  width: 100%;
+  padding: 12px 36px 12px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  background-color: #f8fafc;
+  color: var(--text-main);
+  transition: all 0.18s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.route-input:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.route-dropdown-arrow {
+  position: absolute;
+  right: 12px;
+  width: 15px;
+  height: 15px;
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: transform 0.2s ease;
+}
+
+.route-input:focus ~ .route-dropdown-arrow {
+  color: var(--primary-color);
+  transform: rotate(180deg);
+}
+
+.btn-clear-route {
+  position: absolute;
+  right: 28px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-clear-route:hover {
+  color: #0f172a;
+}
+
+.btn-swap-route {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1.5px solid var(--border-light);
+  color: var(--primary-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  margin-bottom: 2px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.btn-swap-route svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s ease;
+}
+
+.btn-swap-route:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+  transform: scale(1.06);
+}
+
+.btn-swap-route:hover svg {
+  transform: rotate(180deg);
 }
 
 .search-input-box {
@@ -560,11 +758,14 @@ main {
   color: var(--text-muted);
 }
 
-/* Daftar Tiket Vertikal (Ketinggian Seragam Antar Kategori) */
+/* =========================================
+   DAFTAR TIKET GRID 3 KOLOM & KARTU VERTIKAL
+   ========================================= */
 .ticket-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
 }
 
 .ticket-card {
@@ -573,13 +774,10 @@ main {
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: var(--radius-xl);
-  padding: 14px 20px;
+  overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 86px;
-  height: 86px;
+  flex-direction: column;
+  height: 100%;
   box-sizing: border-box;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
@@ -589,18 +787,38 @@ main {
   background-color: rgba(255, 255, 255, 0.98);
   border-color: #cbd5e1;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.16), 0 4px 6px -4px rgba(0, 0, 0, 0.08);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
-.ticket-left {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex: 1;
-  min-width: 0;
+.ticket-card:active {
+  transform: scale(0.98);
 }
 
-/* Chip Ikon Gradasi */
+/* Slot Foto Kartu Tiket (Bagian Atas) */
+.ticket-photo-slot {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  overflow: hidden;
+  background-color: #f1f5f9;
+  flex-shrink: 0;
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+}
+
+.ticket-card-photo {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.ticket-card:hover .ticket-card-photo {
+  transform: scale(1.03);
+}
+
+/* Fallback Ikon Gradasi Kategori (Diperbesar Mengisi Area Foto) */
 .ticket-icon-chip {
   width: 44px;
   height: 44px;
@@ -612,6 +830,29 @@ main {
   color: #ffffff;
 }
 
+.ticket-photo-fallback {
+  width: 100%;
+  height: 150px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.ticket-photo-fallback svg {
+  width: 52px;
+  height: 52px;
+  stroke: #ffffff;
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.ticket-card:hover .ticket-photo-fallback svg {
+  transform: scale(1.06);
+}
+
+/* Gradasi Warna Tiap Kategori */
 .chip-semua {
   background: linear-gradient(135deg, #4f46e5, #7c3aed);
 }
@@ -631,19 +872,14 @@ main {
   background: linear-gradient(135deg, #7c3aed, #a855f7);
 }
 
-.ticket-icon-chip svg {
-  width: 22px;
-  height: 22px;
-  stroke: #ffffff;
-}
-
-.ticket-info {
+/* Badan Kartu Tiket (Bagian Bawah) */
+.ticket-card-body {
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 3px;
-  min-width: 0;
   flex: 1;
+  gap: 8px;
+  box-sizing: border-box;
 }
 
 .ticket-badges {
@@ -655,10 +891,10 @@ main {
 
 .badge-cat {
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
   color: var(--primary-color);
-  letter-spacing: 0.3px;
+  letter-spacing: 0.4px;
 }
 
 .badge-simulasi {
@@ -676,13 +912,17 @@ main {
   font-size: 15px;
   font-weight: 700;
   color: #0f172a;
-  white-space: nowrap;
+  line-height: 1.35;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1.25;
+  min-height: 40px;
 }
 
-.ticket-meta {
+.ticket-provider-row {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -700,7 +940,6 @@ main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 170px;
 }
 
 .ticket-extra-info {
@@ -708,13 +947,19 @@ main {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 140px;
 }
 
 .meta-separator {
   color: #cbd5e1;
   font-size: 11px;
   user-select: none;
+}
+
+.ticket-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
 }
 
 .rating-badge {
@@ -726,23 +971,29 @@ main {
 }
 
 .rating-badge svg {
-  width: 12px;
-  height: 12px;
+  width: 13px;
+  height: 13px;
   fill: #eab308;
 }
 
-.ticket-right {
+.ticket-reviews {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Baris Paling Bawah: Harga & Tombol Pilih */
+.ticket-footer-row {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 5px;
-  flex-shrink: 0;
-  min-width: 135px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
 }
 
 .ticket-price-wrap {
-  text-align: right;
+  text-align: left;
   line-height: 1.15;
 }
 
@@ -752,16 +1003,16 @@ main {
   color: var(--accent-price);
   letter-spacing: -0.3px;
   font-variant-numeric: tabular-nums;
+  display: block;
 }
 
 .ticket-unit {
   font-size: 11px;
   color: var(--text-muted);
-  margin-left: 3px;
 }
 
 .btn-select {
-  padding: 6px 18px;
+  padding: 6px 16px;
   background-color: #ffffff;
   color: var(--primary-color);
   border: 1.5px solid var(--primary-color);
@@ -776,6 +1027,7 @@ main {
   align-items: center;
   justify-content: center;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .btn-select:hover {
@@ -783,8 +1035,29 @@ main {
   color: #ffffff;
 }
 
+.btn-select:active {
+  transform: scale(0.97);
+}
+
+/* Transisi Halus Masuk Saat Daftar Tiket Berubah */
+.tickets-fade-enter {
+  animation: ticketsFadeEnter 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes ticketsFadeEnter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Empty State */
 .empty-state {
+  grid-column: 1 / -1;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -816,6 +1089,964 @@ main {
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
+}
+
+/* =========================================
+   FITUR 1: PAGINASI (KONTROL NAVIGASI HALAMAN)
+   ========================================= */
+.pagination-wrapper {
+  margin-top: 24px;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 14px;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  font-family: inherit;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.pagination-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background-color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.pagination-btn.active {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+  box-shadow: 0 3px 8px rgba(79, 70, 229, 0.35);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.pagination-ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 38px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.pagination-info {
+  font-size: 12px;
+  color: #e2e8f0;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================
+   FITUR 2: MODAL KONFIRMASI & E-TIKET BOARDING PASS
+   ========================================= */
+.tgo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: modalOverlayFadeIn 0.18s ease;
+}
+
+@keyframes modalOverlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.tgo-modal-card {
+  background-color: #ffffff;
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: modalCardPopIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-sizing: border-box;
+}
+
+@keyframes modalCardPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.tgo-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 22px 14px 22px;
+  border-bottom: 1px solid var(--border-light);
+  gap: 12px;
+}
+
+.tgo-modal-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.tgo-modal-subtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin: 3px 0 0 0;
+}
+
+.btn-modal-close {
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.btn-modal-close svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-modal-close:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.tgo-modal-body {
+  padding: 20px 22px 22px 22px;
+}
+
+/* Ringkasan Tiket yang Dipilih */
+.ticket-summary-card {
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  margin-bottom: 18px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.summary-thumb {
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.summary-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.summary-thumb .ticket-icon-chip {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+
+.summary-thumb .ticket-icon-chip svg {
+  width: 26px;
+  height: 26px;
+}
+
+.summary-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.summary-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.summary-badge-cat {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  letter-spacing: 0.4px;
+}
+
+.summary-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+  margin: 0 0 3px 0;
+}
+
+.summary-provider {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+}
+
+.summary-price-row {
+  margin-top: 6px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--accent-price);
+}
+
+.summary-price-unit {
+  font-size: 11px;
+  font-weight: 400;
+  color: #64748b;
+}
+
+/* Form Pemesanan */
+.booking-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.required-star {
+  color: #ef4444;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: #0f172a;
+  background-color: #ffffff;
+  font-family: inherit;
+  transition: all 0.15s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+}
+
+.form-input.is-invalid {
+  border-color: #ef4444;
+  background-color: #fff5f5;
+}
+
+.form-hint {
+  font-size: 11px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.form-error-msg {
+  font-size: 12px;
+  color: #ef4444;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.booking-notice-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-size: 12px;
+  color: #1e40af;
+  line-height: 1.45;
+  margin-bottom: 18px;
+}
+
+.booking-notice-box svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tgo-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.btn-modal-cancel {
+  padding: 10px 18px;
+  background-color: #f1f5f9;
+  color: #475569;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.btn-modal-cancel:hover {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.btn-modal-confirm {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.28);
+}
+
+.btn-modal-confirm svg {
+  width: 15px;
+  height: 15px;
+}
+
+.btn-modal-confirm:hover {
+  background-color: var(--primary-hover);
+}
+
+/* -----------------------------------------
+   E-TIKET / BOARDING PASS & BARCODE RESMI
+   ----------------------------------------- */
+.boarding-pass-modal {
+  max-width: 540px;
+}
+
+.boarding-pass-header {
+  background-color: #f8fafc;
+}
+
+.badge-success-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background-color: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.boarding-pass-card {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: relative;
+}
+
+.bp-top {
+  background: linear-gradient(135deg, #1e1b4b, #312e81);
+  color: #ffffff;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bp-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.bp-type-tag {
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bp-body {
+  padding: 18px 20px 10px 20px;
+}
+
+.bp-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.bp-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.bp-field-full {
+  grid-column: 1 / -1;
+}
+
+.bp-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bp-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.bp-val-highlight {
+  color: var(--primary-color);
+  font-size: 15px;
+}
+
+.bp-val-price {
+  color: var(--accent-price);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+/* Pembatas Porus Boarding Pass (Perforated Line) */
+.bp-perforated-divider {
+  position: relative;
+  margin: 14px 0 10px 0;
+  border-top: 2px dashed #cbd5e1;
+}
+
+.bp-perforated-divider::before,
+.bp-perforated-divider::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 18px;
+  height: 18px;
+  background-color: #f1f5f9;
+  border-radius: 50%;
+  border: 1.5px solid #e2e8f0;
+}
+
+.bp-perforated-divider::before {
+  left: -29px;
+  clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+}
+
+.bp-perforated-divider::after {
+  right: -29px;
+  clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+/* Area Barcode Manual */
+.bp-barcode-section {
+  padding: 10px 20px 18px 20px;
+  text-align: center;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.barcode-canvas {
+  width: 100%;
+  max-width: 380px;
+  height: 72px;
+  display: block;
+  margin: 0 auto;
+}
+
+.barcode-text-code {
+  font-family: "SF Mono", "Menlo", "Courier New", monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #334155;
+  margin-top: 6px;
+}
+
+.eticket-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background-color: #f1f5f9;
+  color: #334155;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.btn-secondary svg {
+  width: 15px;
+  height: 15px;
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+  color: #0f172a;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-family: inherit;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.28);
+}
+
+.btn-primary svg {
+  width: 15px;
+  height: 15px;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+/* =========================================
+   FITUR 3: VIEW "TIKET SAYA" (RIWAYAT PEMESANAN)
+   ========================================= */
+.my-tickets-view {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 32px 20px 64px 20px;
+  box-sizing: border-box;
+}
+
+.my-tickets-header-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: var(--radius-xl);
+  padding: 24px 28px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.btn-back-catalog {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 6px;
+  transition: transform 0.15s ease;
+  font-family: inherit;
+}
+
+.btn-back-catalog svg {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-back-catalog:hover {
+  transform: translateX(-3px);
+}
+
+.my-tickets-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.my-tickets-desc {
+  font-size: 13px;
+  color: #64748b;
+  margin: 4px 0 0 0;
+}
+
+.my-tickets-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #f1f5f9;
+  border: 1px solid var(--border-light);
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.my-tickets-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 22px;
+}
+
+/* Kartu Riwayat E-Tiket */
+.my-ticket-card {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.my-ticket-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
+}
+
+.my-ticket-card-header {
+  padding: 14px 18px;
+  background: #f8fafc;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.my-ticket-booking-id {
+  font-family: "SF Mono", "Menlo", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.my-ticket-status-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #15803d;
+  background-color: #dcfce7;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.my-ticket-card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.my-ticket-cat-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  letter-spacing: 0.4px;
+}
+
+.my-ticket-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.my-ticket-meta {
+  font-size: 12px;
+  color: #64748b;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.my-ticket-passenger-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #1e293b;
+  font-weight: 600;
+  background-color: #f8fafc;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  margin-top: 4px;
+}
+
+.my-ticket-passenger-row svg {
+  width: 15px;
+  height: 15px;
+  color: var(--primary-color);
+}
+
+.my-ticket-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.my-ticket-price {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--accent-price);
+}
+
+.my-ticket-date {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.my-ticket-barcode-wrap {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 10px 12px 8px 12px;
+  text-align: center;
+  margin-top: 6px;
+}
+
+.my-ticket-barcode-canvas {
+  width: 100%;
+  height: 52px;
+  display: block;
+}
+
+.my-ticket-barcode-label {
+  font-family: "SF Mono", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+.my-ticket-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.btn-view-pass {
+  flex: 1;
+  padding: 8px 14px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background-color 0.15s ease;
+  font-family: inherit;
+}
+
+.btn-view-pass:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-delete-booking {
+  padding: 8px 12px;
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.btn-delete-booking:hover {
+  background-color: #fecaca;
+  color: #b91c1c;
+}
+
+/* Empty State Tiket Saya */
+.my-tickets-empty {
+  grid-column: 1 / -1;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px dashed var(--border-subtle);
+  border-radius: var(--radius-xl);
+  padding: 56px 24px;
+  text-align: center;
+}
+
+.my-tickets-empty-icon {
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 16px auto;
+  color: #94a3b8;
+}
+
+.my-tickets-empty-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+
+.my-tickets-empty-desc {
+  font-size: 14px;
+  color: #64748b;
+  max-width: 460px;
+  margin: 0 auto 20px auto;
+  line-height: 1.5;
+}
+
+.btn-browse-catalog {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.18s ease;
+  font-family: inherit;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+
+.btn-browse-catalog:hover {
+  background-color: var(--primary-hover);
 }
 
 /* -----------------------------------------
@@ -1508,17 +2739,10 @@ main {
 /* =========================================
    RESPONSIVE DESIGN
    ========================================= */
-@media (max-width: 520px) {
-  .content-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .algo-card {
-    position: static;
-  }
-  
-  .floating-search-wrapper {
-    margin-top: -36px;
+@media (max-width: 992px) {
+  .ticket-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
@@ -1534,37 +2758,81 @@ main {
   .search-form {
     flex-direction: column;
     align-items: stretch;
+    gap: 12px;
+  }
+
+  .route-search-fields {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .btn-swap-route {
+    align-self: center;
+    margin: -4px 0;
+    transform: rotate(90deg);
+  }
+  
+  .btn-swap-route:hover {
+    transform: rotate(270deg) scale(1.06);
   }
   
   .btn-search {
     width: 100%;
   }
-  
-  .ticket-card {
-    flex-direction: column;
-    align-items: flex-start;
+
+  .navbar-container {
+    padding: 0 12px;
+  }
+
+  .navbar-brand-group {
+    gap: 10px;
+  }
+
+  .nav-tab span:not(.nav-tab-badge) {
+    font-size: 12px;
+  }
+
+  .nav-tab {
+    padding: 5px 8px;
+    gap: 4px;
+  }
+
+  .nav-badge {
+    display: none;
+  }
+
+  .ticket-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .my-tickets-list {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
   
-  .ticket-left {
-    width: 100%;
-  }
-  
-  .ticket-right {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 12px;
-    border-top: 1px solid #f1f5f9;
-  }
-  
-  .ticket-price-wrap {
-    text-align: left;
+  .my-tickets-header-card {
+    padding: 16px;
   }
   
   .footer-inner {
     flex-direction: column;
     text-align: center;
     justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .algo-card {
+    position: static;
+  }
+  
+  .floating-search-wrapper {
+    margin-top: -36px;
   }
 }
